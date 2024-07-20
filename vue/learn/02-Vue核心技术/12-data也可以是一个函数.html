@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>data也可以是一个函数</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h1>{{msg}}</h1>
+    </div>
+    <script>
+        const vm = new Vue({
+            el:'#app',
+            // data: function(){
+            //   return {
+            //     msg : 'Hello Vue!'
+            //   }
+            // }
+
+             data(){
+              return {
+                msg : 'Hello Vue!'
+              }
+            }
+         })
+
+         let phone = {
+            name : '苹果X'
+         }
+
+         Object.defineProperty(phone,'color',{
+            value : '奶奶灰',
+            enumerable: false,
+            configurable: true
+         })
+    </script>
+</body>
+</html>

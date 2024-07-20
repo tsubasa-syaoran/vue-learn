@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>侦听属性的变化</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+
+    <div id="app">
+        <h1>{{msg}}</h1>
+        number<input type="text" v-model="number"> <br>
+        a.b <input type="text" v-model="a.b">  <br>
+        添加后期监视<input type="text" v-model="number2">  <br>
+        
+    </div>
+    <script>
+        const vm = new Vue({
+            el:'#app',
+            data:{
+                msg : '侦听属性的变化'  ,
+                number : 0,
+                number2: 0,
+                a:{
+                    b: 0
+                }
+            },
+            computed:{
+                test(){
+                    return 'hello' +this.number
+                }
+            },
+
+            watch :{
+                // 可以监视多个属性
+                // 监视哪个属性，请把这个属性的名字拿过来即可。可以监视Vue的原有属性
+                // number : {
+                //     immediate: true,
+                //         handler(newVal,oldVal){
+                //             console.log(newVal ,oldVal)
+                //         }
+                //     },
+                number(newVal,oldVal){
+                    console.log(newVal ,oldVal)
+                },
+                    'a.b' : {
+                        // 默认不开启深度监视
+                        deep: true,
+                    // immediate: true,
+                        handler(newVal,oldVal){
+                            console.log(newVal ,oldVal)
+                        }
+                    },
+
+
+            }
+
+         
+         })
+
+        //  vm.$watch('number2',{
+        //     deep: true,
+        //     immediate: true,
+        //     handler(newVal,oldVal){
+        //       console.log(newVal ,oldVal)
+        //     }
+        //  })
+        vm.$watch('number2',function (newVal,oldVal){
+            console.log(newVal,oldVal)
+        })
+    </script>
+</body>
+</html>

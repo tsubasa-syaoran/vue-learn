@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>16-事件修饰符.html</title>
+    <script src="../js/vue.js"></script>
+    <style>
+        .divList{
+            width: 300px;
+            height: 200px;
+            background-color: aquamarine;
+            overflow: auto;
+        }
+        .item{
+            width: 300px;
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h1>{{msg}}</h1>
+        <a href="https://www.bilibili.com" @click.prevent="gobili">去bili</a>
+        <br>
+        <div @click="three()">
+            <div @click="two()">
+                <button @click.stop="one()">
+                    事件冒泡
+                </button>
+            </div>
+        </div>
+        <br>
+
+        <div @click.capture="three()">
+            <div @click.capture="two()">
+                <button @click.capture="one()">
+                    添加事件监听器的时候采用事件捕获模式
+                </button>
+            </div>
+        </div>
+
+        <br>
+
+        <div @click="three()">
+            <div @click.self="two()">
+                <button @click="one()">
+                    self修饰府
+                </button>
+            </div>
+        </div>
+
+        <br>
+        <div @click="three()">
+            <div @click="two()">
+                <button @click.self.stop="one()">
+                    self修饰府
+                </button>
+            </div>
+        </div>
+
+        <button @click.once="one()">事件只发生一次</button>
+
+    </div>
+
+    <div class="divList" @wheel="testPassive">
+        <div class="item">div1</div>
+        <div class="item">div2</div>
+        <div class="item">div3</div>
+    </div>
+
+
+    <script>
+        const vm = new Vue({
+            el:'#app',
+            data:{
+                msg: '事件修饰符'  
+            },
+            methods:{
+                gobili(event){
+                    //手动调用事件对象的preventDefault()方法，可以阻止事件的默认行为。event. preventDefault();
+                    //在Vue当中，这种事件的默认行为可以不采用手动调用DON的方式来完成，可以使用事件修饰符: prevent.。
+                    // alert('去bili')
+                    // event.preventDefault();
+                    alert('1')
+                },
+                one(){
+                    alert('1')
+                },
+                two(){
+                    alert('2')
+                },
+                three(){
+                    alert('3')
+                },
+                testPassive(event){
+                    for(let i=0;i<10000;i++){
+                        console.log(i)
+                    }
+                    console.log('test passive ...')
+                    event.preventDefault()
+                }
+            }
+         })
+    </script>
+</body>
+</html>

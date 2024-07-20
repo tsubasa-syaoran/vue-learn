@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数据代理机制</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+        <script>
+            let target = {
+                name :'zhangsan'
+            }
+
+            let proxy = {}
+
+            Object.defineProperty(proxy,'name',{
+                get: function(){
+                    return target.name
+                },
+                set: function(val){
+                    target.name = val
+                }
+            })
+
+            // let target = {
+            //     name : 'zhangsan'
+            // }
+            // const vm = new Vue({
+            //     el:'#app',
+            //     data:{
+            //         target  
+            //     }
+            //  })
+
+        </script>
+</body>
+</html>

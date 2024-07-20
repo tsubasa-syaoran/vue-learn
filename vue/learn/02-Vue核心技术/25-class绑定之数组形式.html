@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>class绑定之数组形式</title>
+    <script src="../js/vue.js"></script>
+    <style>
+        .static {
+            border: 1px solid black;
+            width: 100px;
+            height: 100px;
+        }
+
+        .active {
+            background-color: green;
+        }
+
+        .text-danger{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h1>{{msg}}</h1>
+        <div class="static active text-danger">{{msg}}</div> <br>
+        <div class="static" :class="['active','text-danger']">{{msg}}</div> <br>
+        <div class="static" :class="[c1,c2]">{{msg}}</div> <br>
+        <div class="static" :class=classArr>{{msg}}</div> <br>
+    </div>
+    <script>
+        const vm = new Vue({
+            el:'#app',
+            data:{
+                msg: 'Class绑定之数组形式'  ,
+                c1 : 'active',
+                c2 : 'text-danger',
+                classArr: ['active','text-danger']
+            }
+         })
+    </script>
+</body>
+</html>

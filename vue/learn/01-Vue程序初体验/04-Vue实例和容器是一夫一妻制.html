@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue 实例和容器的关系是:一夫一妻制</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+   <div class="app">
+        <h1>{{msg}}</h1>
+   </div>
+   <div class="app">
+        <h1>{{msg}}</h1>
+   </div>
+   <div id="app2">
+        <h1>{{name}}</h1>
+   </div>
+    <script>
+            new Vue({
+                el:'.app',
+                data: {
+                    msg : 'Hello Vue!'
+                }
+            })
+
+            new Vue({
+                el:'#app2',
+                data: {
+                    name : 'zhangsan'
+                }
+            })
+
+            new Vue({
+                el:'#app2',
+                data: {
+                    name : 'jackson'
+                }
+            })
+    </script>
+</body>
+</html>

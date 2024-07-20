@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>解读框架源代码</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h1>姓名: {{name}}</h1>
+        <h1>年龄: {{age}}</h1>
+    </div>
+
+    <script>
+        function isReserved(str){
+            var c = (str + '').charCodeAt(0);
+            return c === 0x24 || c=== 0x5f;
+        }
+
+        const vm = new Vue({
+            el:'#app',
+            data:{
+                name: 'jackson',
+                age: 35  
+            }
+         })
+
+         console.log('name= ' + vm.$data.name)
+         console.log('age=' + vm.$data.age)
+    </script>
+</body>
+</html>

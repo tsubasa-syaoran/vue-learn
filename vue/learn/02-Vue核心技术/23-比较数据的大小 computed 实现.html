@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>比较数据的大小</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h1>{{msg}}</h1>
+        数值1: <input type="number" v-model="num1"> <br>
+        数值2: <input type="number" v-model="num2"> <br>
+        比较大小: {{compareResult}}
+         <br>
+    </div>
+    <script>
+        const vm = new Vue({
+            el:'#app',
+            data:{
+                msg : '比较大小的案例',
+                num1 : 0,
+                num2 : 0
+            },
+             computed  : {
+                 compareResult(){
+                    result = this.num1 - this.num2 
+                    if (result == 0) {
+                        return this.num1 + '='  + this.num2
+                    }
+                    else if (result < 0) {
+                        return this.num1 + '<'  + this.num2
+                    }
+                    if (result == 0) {
+                        return this.num1 + '>'  + this.num2
+                    }
+                 }
+
+             }
+         })
+    </script>
+</body>
+</html>

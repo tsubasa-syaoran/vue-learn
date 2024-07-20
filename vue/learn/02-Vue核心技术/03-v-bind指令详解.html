@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-bind指令详解(他是一个负责动态绑定的指令)</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <span v-bind:xyz="msg"></span>
+        <span v-bind:xyz="msg"></span>
+        <img src="../img/01.png"> <br> 
+        <img v-bind:src="imgPath">
+        <input type="text" name="username" value="zhangsan"> <br>
+        <input type="text" name="username" :value="username"> <br>
+         <a href="https://www.baidu.com">走起</a> <br>
+         <a :href="url">走起</a> <br>
+    </div>
+    <script>
+        new Vue({
+            el:'#app',
+            data: {
+                msg:'Hello Vue!',
+                imgPath : '../img/01.png',
+                username: 'jsacson',
+                url :"https://www.baidu.com"
+            }
+        })
+    </script>
+</body>
+</html>
