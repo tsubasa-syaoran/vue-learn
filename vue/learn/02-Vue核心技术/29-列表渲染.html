@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>列表渲染</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h1>{{msg}}</h1>
+
+        <h2>遍历对象的属性</h2>
+
+        <ul>
+            <li v-for="(value,key) in user">
+                {{key}}:{{value}}
+            </li>
+        </ul>
+        <h2>遍历数组</h2>
+        <ul>
+            <li v-for="(c,index) in str">
+                {{index}}:{{c}}
+            </li>
+        </ul>
+        <h2>遍历指定的次数</h2>
+        <ul>
+            <li v-for="(num,index) in count">
+                {{index}}:{{num}}
+            </li>
+        </ul>
+
+
+        <ul>
+            <li>张三</li>
+            <li>李四</li>
+            <li>王五</li>
+        </ul>
+
+        <ul>
+            <li v-for="name in names">{{name}}</li>
+        </ul>
+
+        <ul>
+            <li v-for = "name of names">
+                {{name}}
+            </li>
+        </ul>
+
+        <ul>
+            <li v-for = "(name,index) of names">
+                {{name}}-{{index}}
+            </li>
+        </ul>
+
+        <ul>
+            <li v-for="(vip,index) in vips">
+                会员名称:{{vip.name}},年龄:{{vip.age}}岁
+            </li>
+        </ul>
+
+        <table>
+            <tr>
+                <th>序号</th>
+                <th>会员名</th>
+                <th>年龄</th>
+                <th>选择</th>
+            </tr>
+            <tr v-for="(vip,index) in vips">
+                <td>{{index+1}}</td>
+                <td>{{vip.name}}</td>
+                <td>{{vip.age}}</td>
+                <td><input type="checkbox"></td>
+            </tr>
+
+        </table>
+    </div>
+    <script>
+        const vm = new Vue({
+            el:'#app',
+            data:{
+                msg:'列表渲染',
+                names: ['jack','lucy','james']  ,
+                vips: [
+                    {id:'111',name:'jack',age:20},
+                    {id:'222',name:'lucy',age:30},
+                    {id:'333',name:'james',age:40},
+                ],
+                user:{
+                      id: '1001',
+                      name: 'zhangsan',
+                      gender : '男'
+                },
+                str:'helloVue',
+                count: 20
+            }
+         })
+    </script>
+</body>
+</html>

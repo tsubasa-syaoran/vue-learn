@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>表单的数据收集</title>
+    <script src="../js/vue.js"></script>
+<body>
+    <div id="app">
+            <h1>{{msg}}</h1>
+            <form >
+                用户名: <input type="text" v-model.trim ="user.username"> <br><br>
+                密码: <input type="password" v-model="user.password"> <br><br>
+                年龄: <input type="number" v-model="user.age"> <br><br>
+                性别:   
+                    男  <input type="radio" name="gender" value="1" v-model="user.gender">
+                    女  <input type="radio" name="gender" value="0" v-model="user.gender"><br><br>
+                爱好:  
+                     旅游<input type="checkbox"  v-model="user.interest" value="travel">
+                     运动<input type="checkbox"  v-model="user.interest" value="support">
+                     唱歌<input type="checkbox"  v-model="user.interest" value="sing"><br><br>
+                学历:  
+                   <select v-model="user.grade">
+                        <option  value="">请选择学历</option>
+                        <option value="zk">专科</option>
+                        <option value="bk">本科</option>
+                        <option value="ss">硕士</option>
+                    </select>
+                    <br><br>
+                简介:
+                <textarea cols="50" rows="50" v-model.lazy="user.introduce"></textarea><br><br>
+                <input type="checkbox" v-model="user.accept">阅读并注册协议<br><br>
+                <button @click.prevent="send">注册</button>
+            </form>
+    </div>
+    <script>
+        const vm = new Vue({
+            el:'#app',
+            data:{
+                msg:'表单数据收集',
+                user:{
+                    username:'',
+                    password:'',
+                    age:0,
+                    gender:'1',
+                    interest:[],
+                    grade: '',
+                    introduce : '',
+                    accept: ''
+                }
+            },
+            methods:{
+                send(){
+                    alert('ajax...')
+                    console.log(JSON.stringify(this.user))
+                }
+            }
+         })
+    </script>
+</body>
+</html>

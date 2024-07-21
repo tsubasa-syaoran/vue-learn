@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>响应式与数据劫持</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h1>{{msg}}</h1>
+        <div>姓名:{{name}}</div>
+        <div>年龄:{{age}}</div>
+        <div>数字:{{a.b.c.e}}</div>
+    </div>
+    <script>
+        const vm = new Vue({
+            el:'#app',
+            data:{
+                msg: '响应式与数据劫持',
+                name: 'jackson',
+                age: 20  ,
+                a:{
+                    b:{
+                        c:{
+                            e:1
+                        }
+                    }
+                }
+            }
+         })
+
+        //  vm.$data.a.email = 'jack@126.com'
+        //  Vue.set(vm.$data.a,'email','jack@126.com')
+         Vue.set(vm.a,'email','jack@126.com')
+    </script>
+</body>
+</html>

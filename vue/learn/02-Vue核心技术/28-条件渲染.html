@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>条件渲染</title>
+    <script src="../js/vue.js"></script>
+</head> 
+<body>
+    <div id="app">
+        <h1>{{msg}}</h1>
+        <!--v-if指令的值:true/false
+        true:表示该元素会被渲染到页面上。
+        false:表示该元素不会被渲染到页面上。(注意:不是修改了cSs样式，是这个元素压根没有加载)
+        -->
+        <div v-if="true">{{msg}}</div>
+
+        <button @click="counter++">点我加1</button>
+        <h3>{{counter}}</h3>
+
+        <img :src="imgPath1"  v-if="counter %2 ===1 ">
+        <img :src="imgPath2"  v-else>
+
+        <br><br>
+        温度: <input type="number" v-model="temprature"> <br><br>
+        天气: <span v-if="temprature<=10">寒冷</span>
+        <span v-else-if="temprature<=25">凉爽</span>
+        <span v-else>炎热</span>
+        <!-- 通过css样式display修改是否隐藏-->
+        <div v-show="false">你能看到我吗?</div>
+
+        <!--  template 仅仅起到占位的作用 -->
+        <template>
+            <input type="text">
+            <input type="checkbox">
+            <input type="radio">    
+        </template>
+    </div>
+    <script>
+        const vm = new Vue({
+            el:'#app',
+            data:{
+                msg: '条件渲染' ,
+                counter: 0,
+                imgPath1: '../img/01.png',
+                imgPath2: '../img/02.png',
+                temprature : 0
+            }
+         })
+    </script>
+</body>
+</html>

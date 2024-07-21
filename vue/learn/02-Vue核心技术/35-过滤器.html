@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>过滤器</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    
+    <div id="app">
+        <h1>{{msg}}</h1>
+        <h2>商品价格:{{formatPrice}}</h2>
+        <h2>商品价格:{{formatPrice2()}}</h2>
+        <h2>商品价格:{{ price | filterA | filterB(3)}}</h2>
+        <input type="text" :value="price | filterA | filterB(3)">
+    </div>
+
+    <div id="app2">
+        <h2>商品价格:{{price | filterA | filterB(3)}}</h2>
+    </div>
+    <script>
+
+
+        Vue.filter('filterA',function(val){
+                 if(val === null || val === undefined || val === '') {
+                        return '-'
+                     }
+                     return val
+        })
+
+        Vue.filter('filterB',function(val,number){
+                     // console.log('@',val)
+                     return val.toFixed(number)                
+        })
+
+
+        const vm2 = new Vue({
+            el:'#app2',
+            data:{
+                msg: '过滤器',
+                price: 50.6 
+            }
+        })
+
+
+        const vm = new Vue({
+            el:'#app',
+            data:{
+                msg: '过滤器',
+                price: 50.6  
+            },
+            methods:{
+                formatPrice2(){
+                    if(this.price===null || this.price === undefined || this.price === ''){
+                        return '-'
+                    }
+                    return this.price
+                }
+            },
+            computed:{
+                formatPrice(){
+                    if(this.price===null || this.price === undefined || this.price === ''){
+                        return '-'
+                    }
+                    return this.price
+                }
+            },
+            // filters : {
+            //     filterA(val){
+            //          // console.log('@',val)
+            //          if(val === null || val === undefined || val === '') {
+            //             return '-'
+            //          }
+            //          return val
+            //     },
+            //     filterB(val,number){
+            //          // console.log('@',val)
+            //          return val.toFixed(number)                }
+            // }
+         })
+    </script>
+</body>
+</html>

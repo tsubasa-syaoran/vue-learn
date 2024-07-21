@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>虚拟dom与diff算法</title>
+    <script src="../js/vue.js"></script>
+    <style>
+        th,td{border: 1px solid black;}
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h1>{{msg}}</h1>
+        <table>
+            <tr>
+                <th>序号</th>
+                <th>英雄</th>
+                <th>能量值</th>
+                <th>选择</th>
+            </tr>
+            <tr v-for="(hero,index) in heros" :key="hero.id">
+                <td>{{index+1}}</td>
+                <td>{{hero.name}}</td>
+                <td>{{hero.power}}</td>
+                <td><input type="checkbox"></td>
+            </tr>
+        </table>
+        <button @click="addhero()">添加英雄麦文</button>
+    </div>
+    <script>
+        const vm = new Vue({
+            el:'#app',
+            data:{
+                msg: '虚拟dom与diff算法',  
+                heros:[
+                    {id:'101',name:'艾格文',power:10000},
+                    {id:'102',name:'麦迪文',power:9000},
+                    {id:'103',name:'古尔丹',power:8000},
+                    {id:'104',name:'萨尔',power:6000},
+                ]
+            },
+            methods:{
+                addhero(){
+                    this.heros.unshift({id:'105',name:'麦文',power:9100})
+                }
+            }
+         })
+    </script>
+</body>
+</html>

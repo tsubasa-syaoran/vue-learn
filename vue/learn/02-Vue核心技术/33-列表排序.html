@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>列表过滤</title>
+    <script src="../js/vue.js"></script>
+    <style>
+        th,td{border: 1px solid black;}
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h1>{{msg}}</h1>
+        <input type="text" placeholder="请输入查询信息" v-model="keyword">
+
+        <br>
+        <button @click="type=1">升序</button>
+        <button @click="type=2">降序</button>
+        <button @click="type=0">原序</button>
+        <table>
+            <tr>
+                <th>序号</th>
+                <th>英雄</th>
+                <th>能量值</th>
+                <th>选择</th>
+            </tr>
+            <tr v-for="(hero,index) in filtedHeros" :key="hero.id">
+                <td>{{index+1}}</td>
+                <td>{{hero.name}}</td>
+                <td>{{hero.power}}</td>
+                <td><input type="checkbox"></td>
+            </tr>
+        </table>
+    </div>
+    <script>
+        const vm = new Vue({
+            el:'#app',
+            data:{
+                msg: '虚拟dom与diff算法',  
+                keyword : '',
+                type: 0,
+                heros:[
+                    {id:'101',name:'艾格文',power:10000},
+                    {id:'102',name:'麦迪文',power:9000},
+                    {id:'103',name:'古尔丹',power:8000},
+                    {id:'104',name:'萨尔',power:6000},
+                ]
+            },
+            computed:{
+                 filtedHeros(){
+                    let arr =  this.heros.filter((hero)=>{
+                        return hero.name.indexOf(this.keyword) >= 0
+                    })
+
+                    // 先排序
+
+                    if(this.type === 1){
+                        arr.sort((a,b)=>{
+                        return a.power - b.power
+                        })
+                    }
+                    else if(this.type===2){
+                        arr.sort((a,b)=>{
+                        return b.power - a.power
+                        })
+                    }
+                    return arr
+                 }
+            }
+        })
+    </script>
+</body>
+</html>

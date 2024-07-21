@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue的其他指令</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+         <h1>{{msg}}</h1>
+         <!--v-text 可以将指令的内容拿出来填充到标签体当中。和JS的innerText一样。-->
+         <h1 v-text="msg">test</h1>
+         <h1 v-text="name">test</h1>
+         <h1 v-text="s1"></h1>
+
+
+         <h1 v-html="s1"></h1>
+
+         <ul>
+            <li v-for="(m,index) in messageList" :key="index" v-html="m"> </li>
+         </ul>
+         <textarea cols="50" rows="10" v-model.lazy="message"></textarea>
+         <br><br>
+         <button @click="save">保存留言</button>
+    </div>
+    <script>
+        const vm = new Vue({
+            el:'#app',
+            data:{
+                  msg: 'Vue的其他指令',
+                  name: 'jack',
+                  s1: '<h1>欢迎大家学习Vue!</h1>',
+                  message: '',
+                  messageList: []
+            },
+            methods:{
+                save(){
+                    this.messageList.push(this.message)
+                }
+            }
+         })
+    </script>
+</body>
+</html>
