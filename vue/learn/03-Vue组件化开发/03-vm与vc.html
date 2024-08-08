@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vm与vc</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+        <div id="app">
+            <h1>{{msg}}</h1>
+            <user></user>
+        </div>
+        <script>
+
+            Vue.prototype.counter = 1000
+            const user = Vue.extend({
+                template: `
+                <div>
+                    <h1>user组件</h1>
+                </div>
+                `,
+                mounted(){
+                    // console.log('vc',this)
+                    console.log('vc.counter',this.counter)
+                }
+            })
+
+            console.log('user.prototype.__proto__ === Vue.prototype',user.prototype.__proto__ === Vue.prototype)
+            console.log(user)
+
+            const vm = new Vue({
+                el:'#app',
+                data:{
+                    msg: 'vm与vc' ,
+                },
+                
+                components:{
+                    user
+                },
+                mounted(){
+                    console.log('vm',this)
+                }
+             })
+
+
+             function test(){
+                var Sub = function User(){
+                    this.name = 'admin'
+                }
+                return Sub
+             }
+
+             console.log(vm.counter)
+
+            //  let a = test()
+            //  console.log(a)
+            //  let b = test()
+            //  console.log(b)
+            //  console.log(a === b)
+
+
+             function Vip(){
+
+             }
+
+             let x = Vip.prototype
+
+             let a = new Vip()
+             let b = new Vip()
+             let c = new Vip()
+
+             let y = a.__proto__
+             console.log(x === y)
+
+             Vip.prototype.counter = 1000
+             // 通过a实例可以访问这个扩展的counter属性吗? 可以访问? 原理是什么?
+             // 访问原理: 首先去a 实例上找counter 属性,如果a实例上没有counter 属性的话,会找__proto__原型对象找.
+             console.log(a.counter)
+        </script>
+</body>
+</html>
