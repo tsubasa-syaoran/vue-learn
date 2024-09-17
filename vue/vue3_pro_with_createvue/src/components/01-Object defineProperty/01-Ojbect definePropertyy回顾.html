@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>01-Ojbect definePropertyy回顾</title>
+</head>
+<body>
+    <script>
+        let user1 = {
+            name : 'jack'
+        }
+
+        let user2 = {
+
+        }
+
+        Object.defineProperty(user2,'name',{
+            get(){
+                return user1.name
+            },
+            set(value){
+                user1.name = value
+                console.log('这里进行响应式处理,页面已经更新')
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let arr = [1,23,23,3453,52,5345]
+        console.log(...arr )
+
+        let o1 = {
+            x: 1,
+            y: 1
+        }
+        // 脱掉之后再穿上,生成一个全新的对象
+        let o2 = {...o1}
+        console.log({...o1})
+        console.loig(o1 === o2)
+    </script> 
+</body>
+</html>

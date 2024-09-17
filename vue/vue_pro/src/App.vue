@@ -1,52 +1,67 @@
 <template>
     <div>
-       <!--
-       1.关于内置事件的实现步骤。
-       第一步:提供事件源(以下这个按钮就是一个事件源)第二步:给事件源绑定事件
-       v-on:事件名或者@事件名
-       第三步:编写回调函数，将回调函数和事件进行绑定
-       第四步:等待事件的触发,只要事件触发，则执行回调函数。2.关于组件的自定义事件，实现步骤:
-       第一步:提供事件源(以下这个按钮就是一个事件源)第二步:给事件源绑定事件
-       v-on:事件名或者@事件名
-       第三步:编写回调函数，将回调函数和事件进行绑定
-       第四步:等待事件的触发，只要事件触发，则执行回调函数。|
-        -->
-        <button @click="hello">内置事件的实现步骤</button>
-        <User @event1="doSome"></User>
-        <User v-on:event1="doSome"></User>
-        <User v-on:event1.once="doSome"></User>
+      <MyHeader> </MyHeader>
+         <div>
+          <h1>省份</h1>
+          <button @click="forward">前进</button>
+            <button @click="back">后退</button>
+            <button @click="forwardTwo">前进2步</button>
+            <button @click="backTwo">后退2步</button>
+            <ul>
+                <li><router-link to="./hebei" active-class="selected">河北省</router-link></li>
+                <li><router-link to="./henan" active-class="selected">河南省</router-link></li>
+            </ul>
+       </div>
+      <!--该标签下面的所有内容，都不会被销毁 -->
 
-        <!-- 准备一个组件 --> 
-        <User ref="user"></User>
+      <!-- -->
+      <keep-alive :include="['HeBei','HeNan']">
+         <router-view></router-view>
+      </keep-alive>
+      
+        
     </div>
 </template>
-
 <script>
-    import User from './components/User.vue'
-    export default {
-        name: 'App',
-        components:{User},
-        methods:{
-          hello(){
-            console.log('hello vue')
-          },
-          // doSome(name,age,gender){
-          //   console.log(name,age,gender)
-          // }
+import MyHeader from './components/MyHeader.vue'
 
-          doSome(name,...params){
-            console.log(name,params)
-          }
-        },
-        mounted(){
-          // this.$refs.user.$on('event1',this.doSome)
+export default {
+  name: 'App',
 
-          // 保证只触发一次
-          this.$refs.user.$once('event1',this.doSome)
-        }
+  components: {MyHeader},
+  methods: {
+    forward(){
+        this.$router.forward()
+    },
+
+    back(){
+        this.$router.back()
+    },
+
+    forwardTwo(){
+        this.$router.go(2)
+    },
+
+    backTwo(){
+        this.$router.go(-2)
+    }
+
+  }
+
 }
 </script>
 
 <style>
+       .s1 {
+            margin-left : 100px;
+        }
 
+       .s2 {
+            margin-left : 100px;
+        }
+
+
+        .selected{
+            background-color: aqua;
+        }
 </style>

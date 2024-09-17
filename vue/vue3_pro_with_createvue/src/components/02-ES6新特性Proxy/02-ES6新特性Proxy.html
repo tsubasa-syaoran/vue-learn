@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ES6新特性Proxy</title>
+</head>
+<body>
+    <script>
+        let user ={
+            name : 'jack'
+        }
+
+        let userProxy = new Proxy(user,{
+            get(target,propertyName){
+                console.log('读取了')
+                console.log(target)
+                console.log(propertyName)
+                console.log(typeof propertyName)
+                // return target[propertyName]
+                return Reflect.get(target,propertyName)
+            },
+
+            set(target,propertyName,value){
+                console.log('修改了或者添加了')
+                // target[propertyName] =value
+                return Reflect.set(target,propertyName,value)
+            },
+
+            deleteProperty(target,propertyName){
+                console.log('删除了')
+                // delete target[propertyName]
+                return Reflect.deleteProperty(target,propertyName)
+            }
+
+        })
+    </script>
+</body>
+</html>
